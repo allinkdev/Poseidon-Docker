@@ -1,0 +1,16 @@
+volumes:
+  files:
+
+
+services:
+  server:
+    build: .
+    tty: true # this jline version in particular seems to spam stdin & stdout with >
+    restart: always
+    cap_drop:
+      - ALL
+    ports:
+      - 25565:25565/tcp
+      - 25565:25565/udp
+    volumes:
+      - files:/server/:rw
